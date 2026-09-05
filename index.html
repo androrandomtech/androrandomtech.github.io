@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AndroRandomTech — App Android</title>
+<meta name="description" content="AndroRandomTech sviluppa app Android per Google Play. Scopri Pieno Smart, l'app per confrontare i prezzi dei carburanti in Italia.">
+<meta name="author" content="AndroRandomTech">
+<link rel="canonical" href="https://androrandomtech.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AndroRandomTech">
+<meta property="og:title" content="AndroRandomTech — App Android">
+<meta property="og:description" content="App Android per Google Play. Scopri Pieno Smart, l'app per confrontare i prezzi dei carburanti in Italia.">
+<meta property="og:url" content="https://androrandomtech.github.io/">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='24' fill='%232F5FDE'/%3E%3Cg transform='translate(26 26) scale(2.3333)' fill='%23fff'%3E%3Cpath d='M19.77,7.23l0.01,-0.01l-3.72,-3.72L15,4.56l2.11,2.11c-0.94,0.36 -1.61,1.26 -1.61,2.33 0,1.38 1.12,2.5 2.5,2.5 0.36,0 0.69,-0.08 1,-0.21v7.21c0,0.55 -0.45,1 -1,1s-1,-0.45 -1,-1V14c0,-1.1 -0.9,-2 -2,-2h-1V5c0,-1.1 -0.9,-2 -2,-2H6c-1.1,0 -2,0.9 -2,2v16h10v-7.5h1.5v5c0,1.38 1.12,2.5 2.5,2.5s2.5,-1.12 2.5,-2.5V9c0,-0.69 -0.28,-1.32 -0.73,-1.77zM12,9H6V5h6v4zM18,10c-0.55,0 -1,-0.45 -1,-1s0.45,-1 1,-1 1,0.45 1,1 -0.45,1 -1,1z'/%3E%3C/g%3E%3C/svg%3E">
+
+<style>
+  :root {
+    color-scheme: light dark;
+    --brand: #2f5fde;
+    --brand-strong: #173b94;
+    --bg: #f6f8fc;
+    --bg-accent: #eaeffb;
+    --surface: #ffffff;
+    --text: #11141c;
+    --muted: #59617a;
+    --border: #e2e7f2;
+    --shadow: 0 1px 2px rgba(17, 20, 28, .06), 0 8px 24px rgba(17, 20, 28, .06);
+    --radius: 16px;
+    --maxw: 62rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --brand: #6f95ff;
+      --brand-strong: #3f6ee6;
+      --bg: #0c0f16;
+      --bg-accent: #131a2a;
+      --surface: #151a24;
+      --text: #e9ecf4;
+      --muted: #98a1b8;
+      --border: #242c3c;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 1rem/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 1.25rem; }
+
+  a { color: var(--brand); }
+  a:hover { text-decoration: none; }
+
+  .skip {
+    position: absolute; left: -999px;
+    background: var(--surface); color: var(--text);
+    padding: .6rem 1rem; border-radius: 8px; z-index: 10;
+  }
+  .skip:focus { left: 1rem; top: 1rem; }
+
+  /* ---------- Intestazione ---------- */
+
+  header.site {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky; top: 0; z-index: 5;
+  }
+  header.site .wrap {
+    display: flex; align-items: center; gap: 1rem;
+    justify-content: space-between; min-height: 4rem; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: .6rem; font-weight: 650; letter-spacing: -.01em; }
+  .brand svg { display: block; border-radius: 9px; }
+  nav.site ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; font-size: .9375rem; }
+  nav.site a { color: var(--muted); text-decoration: none; }
+  nav.site a:hover { color: var(--text); }
+
+  /* ---------- Hero ---------- */
+
+  .hero { background: linear-gradient(180deg, var(--bg-accent), var(--bg)); border-bottom: 1px solid var(--border); }
+  .hero .wrap { padding-block: 4rem 3.5rem; }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 2.85rem); line-height: 1.15;
+    letter-spacing: -.025em; margin: 0 0 .85rem;
+  }
+  .hero p { font-size: 1.125rem; color: var(--muted); max-width: 40rem; margin: 0; }
+  .eyebrow {
+    display: inline-block; font-size: .75rem; font-weight: 650;
+    letter-spacing: .09em; text-transform: uppercase;
+    color: var(--brand); margin-bottom: .9rem;
+  }
+
+  /* ---------- Sezioni ---------- */
+
+  section { padding-block: 3.5rem; }
+  section > .wrap > h2, .contact-card h2 { font-size: 1.5rem; letter-spacing: -.02em; margin: 0 0 .4rem; }
+  .section-note { color: var(--muted); margin: 0 0 2rem; max-width: 42rem; }
+
+  /* ---------- Griglia app ---------- */
+
+  .apps {
+    display: grid; gap: 1.5rem; align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+
+  article.app {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 1.6rem; display: flex; flex-direction: column; gap: 1.1rem;
+  }
+  .app-head { display: flex; gap: 1rem; align-items: center; }
+  .app-head svg { flex: none; }
+  .app-head h3 { margin: 0; font-size: 1.2rem; letter-spacing: -.015em; }
+  .app-head p { margin: .15rem 0 0; color: var(--muted); font-size: .9375rem; }
+  article.app > p { margin: 0; }
+
+  ul.features { margin: 0; padding: 0; list-style: none; display: grid; gap: .5rem; font-size: .9375rem; }
+  ul.features li { display: flex; gap: .6rem; align-items: flex-start; }
+  ul.features li::before {
+    content: ""; flex: none; width: .45rem; height: .45rem; margin-top: .58rem;
+    border-radius: 50%; background: var(--brand);
+  }
+
+  .meta { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .meta span {
+    font-size: .75rem; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: .2rem .6rem; white-space: nowrap;
+  }
+
+  .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: auto; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .6rem 1.1rem; border-radius: 10px;
+    font-size: .9375rem; font-weight: 550; text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--brand); color: #fff; }
+  .btn-primary:hover { background: var(--brand-strong); }
+  .btn-secondary { border-color: var(--border); color: var(--text); background: var(--surface); }
+  .btn-secondary:hover { border-color: var(--brand); color: var(--brand); }
+
+  .soon {
+    border: 1px dashed var(--border); border-radius: var(--radius);
+    padding: 1.6rem; color: var(--muted); font-size: .9375rem;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    min-height: 100%; margin: 0;
+  }
+
+  /* ---------- Contatti ---------- */
+
+  #contatti { background: var(--bg-accent); border-block: 1px solid var(--border); }
+  .contact-card { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; align-items: center; justify-content: space-between; }
+  .contact-card p { margin: 0; color: var(--muted); max-width: 34rem; }
+
+  /* ---------- Piè di pagina ---------- */
+
+  footer.site { padding-block: 2.5rem; font-size: .875rem; color: var(--muted); }
+  footer.site .wrap { display: grid; gap: 1rem; }
+  footer.site .disclaimer { max-width: 46rem; margin: 0; }
+  footer.site nav ul { display: flex; flex-wrap: wrap; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+  footer.site a { color: var(--muted); }
+  footer.site p:last-child { margin: 0; }
+</style>
+</head>
+
+<body>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+
+<header class="site">
+  <div class="wrap">
+    <span class="brand">
+      <svg width="28" height="28" viewBox="0 0 108 108" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg-brand" x1="0" y1="0" x2="108" y2="108" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2F5FDE"/><stop offset="1" stop-color="#173B94"/>
+          </linearGradient>
+        </defs>
+        <rect width="108" height="108" fill="url(#lg-brand)"/>
+        <g transform="translate(26 26) scale(2.3333)" fill="#fff">
+          <path d="M19.77,7.23l0.01,-0.01l-3.72,-3.72L15,4.56l2.11,2.11c-0.94,0.36 -1.61,1.26 -1.61,2.33 0,1.38 1.12,2.5 2.5,2.5 0.36,0 0.69,-0.08 1,-0.21v7.21c0,0.55 -0.45,1 -1,1s-1,-0.45 -1,-1V14c0,-1.1 -0.9,-2 -2,-2h-1V5c0,-1.1 -0.9,-2 -2,-2H6c-1.1,0 -2,0.9 -2,2v16h10v-7.5h1.5v5c0,1.38 1.12,2.5 2.5,2.5s2.5,-1.12 2.5,-2.5V9c0,-0.69 -0.28,-1.32 -0.73,-1.77zM12,9H6V5h6v4zM18,10c-0.55,0 -1,-0.45 -1,-1s0.45,-1 1,-1 1,0.45 1,1 -0.45,1 -1,1z"/>
+        </g>
+      </svg>
+      AndroRandomTech
+    </span>
+    <nav class="site" aria-label="Navigazione principale">
+      <ul>
+        <li><a href="#app">App</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenuto">
+
+  <div class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Sviluppatore Android</span>
+      <h1>App Android che risolvono un problema alla volta.</h1>
+      <p>
+        AndroRandomTech progetta e pubblica applicazioni per Android su Google Play.
+        Strumenti essenziali, costruiti su dati verificabili e pensati per essere utili
+        dal primo avvio.
+      </p>
+    </div>
+  </div>
+
+  <section id="app">
+    <div class="wrap">
+      <h2>Le nostre app</h2>
+      <p class="section-note">Tutte le applicazioni pubblicate da AndroRandomTech su Google Play.</p>
+
+      <div class="apps">
+
+        <!--
+          Per aggiungere una nuova app: duplica il blocco <article class="app"> qui sotto e
+          sostituisci icona, nome, descrizione, funzionalità, badge e link. Ricordati di dare
+          un id diverso al gradiente dell'icona (lg-pieno → lg-nomeapp), altrimenti le due
+          icone useranno lo stesso colore. Quando le app saranno abbastanza, elimina il
+          riquadro tratteggiato "Altre app in arrivo".
+        -->
+        <article class="app">
+          <div class="app-head">
+            <svg width="64" height="64" viewBox="0 0 108 108" role="img" aria-label="Icona di Pieno Smart">
+              <defs>
+                <linearGradient id="lg-pieno" x1="0" y1="0" x2="108" y2="108" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#2F5FDE"/><stop offset="1" stop-color="#173B94"/>
+                </linearGradient>
+              </defs>
+              <rect width="108" height="108" rx="24" fill="url(#lg-pieno)"/>
+              <g transform="translate(26 26) scale(2.3333)" fill="#fff">
+                <path d="M19.77,7.23l0.01,-0.01l-3.72,-3.72L15,4.56l2.11,2.11c-0.94,0.36 -1.61,1.26 -1.61,2.33 0,1.38 1.12,2.5 2.5,2.5 0.36,0 0.69,-0.08 1,-0.21v7.21c0,0.55 -0.45,1 -1,1s-1,-0.45 -1,-1V14c0,-1.1 -0.9,-2 -2,-2h-1V5c0,-1.1 -0.9,-2 -2,-2H6c-1.1,0 -2,0.9 -2,2v16h10v-7.5h1.5v5c0,1.38 1.12,2.5 2.5,2.5s2.5,-1.12 2.5,-2.5V9c0,-0.69 -0.28,-1.32 -0.73,-1.77zM12,9H6V5h6v4zM18,10c-0.55,0 -1,-0.45 -1,-1s0.45,-1 1,-1 1,0.45 1,1 -0.45,1 -1,1z"/>
+              </g>
+            </svg>
+            <div>
+              <h3>Pieno Smart</h3>
+              <p>Prezzi dei carburanti in Italia</p>
+            </div>
+          </div>
+
+          <p>
+            Trova il distributore più conveniente vicino a te. I prezzi arrivano dagli open data
+            del Ministero delle Imprese e del Made in Italy, si aggiornano automaticamente, e
+            ogni valore mostra sempre da dove proviene.
+          </p>
+
+          <ul class="features">
+            <li>Mappa e ricerca dei distributori attivi in tutta Italia</li>
+            <li>Prezzi ufficiali MIMIT affiancati dalle segnalazioni della community</li>
+            <li>Preferiti con notifica quando il prezzo scende sotto la tua soglia</li>
+            <li>Pianificatore di viaggio con le soste per il rifornimento sul percorso</li>
+            <li>Colonnine di ricarica elettrica e punti di interesse</li>
+            <li>Registro dei rifornimenti, con consumi e report mensile del risparmio</li>
+            <li>Widget per la schermata home</li>
+          </ul>
+
+          <div class="meta">
+            <span>Android 10 o successivo</span>
+            <span>Versione 1.1</span>
+            <span>Gratuita, con annunci</span>
+            <span>Italiano</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.art.prezzibenzina">Scarica su Google Play</a>
+            <a class="btn btn-secondary" href="https://sites.google.com/view/pieno-smart-privacy">Informativa privacy</a>
+          </div>
+        </article>
+
+        <p class="soon">Altre app in arrivo.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contatti">
+    <div class="wrap contact-card">
+      <div>
+        <h2>Contatti</h2>
+        <p>
+          Segnalazioni di problemi, richieste di assistenza o domande sulle app: scrivici,
+          rispondiamo a tutti i messaggi.
+        </p>
+      </div>
+      <a class="btn btn-primary" href="mailto:androrandomtech@gmail.com">androrandomtech@gmail.com</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p class="disclaimer">
+      Pieno Smart è un'applicazione indipendente: non è affiliata, autorizzata, approvata né
+      collegata al Ministero delle Imprese e del Made in Italy, al Governo italiano o ad altri
+      enti pubblici. I prezzi provengono dagli open data pubblicati dal MIMIT e possono differire
+      da quelli esposti al distributore.
+    </p>
+    <nav aria-label="Link di servizio">
+      <ul>
+        <li><a href="https://sites.google.com/view/pieno-smart-privacy">Informativa privacy</a></li>
+        <li><a href="mailto:androrandomtech@gmail.com">Contatti</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.art.prezzibenzina">Google Play</a></li>
+      </ul>
+    </nav>
+    <p>© 2026 AndroRandomTech</p>
+  </div>
+</footer>
+
+</body>
+</html>
